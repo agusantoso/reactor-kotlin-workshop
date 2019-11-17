@@ -2,6 +2,7 @@ package io.eddumelendez.reactorkotlin
 
 import org.junit.Test
 import reactor.core.publisher.Mono
+import reactor.core.publisher.toMono
 import reactor.test.test
 import java.time.Duration
 
@@ -15,9 +16,9 @@ class Part02Mono {
                 .verifyComplete()
     }
 
-    // TODO Return an empty Mono
+    // Return an empty Mono
     fun emptyMono(): Mono<String> {
-        return null!!
+        return Mono.empty()
     }
 
     @Test
@@ -31,9 +32,9 @@ class Part02Mono {
                 .verify()
     }
 
-    // TODO Return an Mono that never emit any signal
+    // Return an Mono that never emit any signal
     fun monoWithNoSignal(): Mono<String> {
-        return null!!
+        return Mono.never()
     }
 
     @Test
@@ -44,9 +45,9 @@ class Part02Mono {
                 .verifyError(IllegalStateException::class.java)
     }
 
-    // TODO Create a Mono that emits an IllegalStateException
+    // Create a Mono that emits an IllegalStateException
     fun errorMono(): Mono<String> {
-        return null!!
+        return IllegalStateException().toMono()
     }
 
 }
